@@ -36,11 +36,6 @@ This includes:
 How controlled terms, date formats, and the default unmapped value are used is controlled in the 
 `SemanticMapper` class - see: `src/pancaim_cdm/semantinc_mapping/semantic_mapper.py`.
 
-### Updating the export configuration settings
-
-The export configuration structure and constraints are defined in the  
-`ExportConfig` class - see: `src/pancaim_cdm/export/export_config_model.py`.
-
 ### Testing changes
 
 Simply execute the following from the project root to detect and execute tests in the `tests` 
