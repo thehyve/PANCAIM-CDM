@@ -25,6 +25,8 @@ _person = Table(
     fields=SimpleNamespace(
         pancaim_id='pancaim_id',
         sex='sex',
+        pancaim_id_raw_value='pancaim_id_raw_value',
+        sex_raw_value='sex_raw_value'
     )
 )
 
@@ -35,3 +37,5 @@ class Person(Base):
 
     pancaim_id = Column(Integer, primary_key=True, name=_person.fields.pancaim_id)
     sex = Column(Text, nullable=False, name=_person.fields.sex)
+    pancaim_id_raw_value = Column(Text, name=_person.fields.pancaim_id_raw_value)
+    sex_raw_value = Column(Text, name=_person.fields.sex_raw_value)
