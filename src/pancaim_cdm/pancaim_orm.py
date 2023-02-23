@@ -62,8 +62,10 @@ _body_measurement = Table(
     name='body_measurement',
     fields=SimpleNamespace(
         body_measurement_id='body_measurement_id',
-
         pancaim_id='pancaim_id',
+
+        body_measurement_date='body_measurement_date',
+        body_measurement_date_raw_value='body_measurement_date_raw_value',
 
         height='height',
         weight='weight',
@@ -77,8 +79,10 @@ _lab = Table(
     name='lab',
     fields=SimpleNamespace(
         lab_id='lab_id',
-
         pancaim_id='pancaim_id',
+
+        lab_date='lab_date',
+        lab_date_raw_value='lab_date_raw_value',
 
         albumin='albumin',
         alt='alt',
@@ -122,13 +126,15 @@ _lab2 = Table(
     name='lab2',
     fields=SimpleNamespace(
         lab2_id='lab2_id',
-
         pancaim_id='pancaim_id',
 
-        ca_19_9='ca_19_0',
+        lab2_date='lab2_date',
+        lab2_date_raw_value='lab2_date_raw_value',
+
+        ca_19_9='ca_19_9',
         cea='cea',
 
-        ca_19_9_raw_value='ca_19_0_raw_value',
+        ca_19_9_raw_value='ca_19_9_raw_value',
         cea_raw_value='cea_raw_value',
     )
 )
@@ -137,8 +143,10 @@ _prognosis = Table(
     name='prognosis',
     fields=SimpleNamespace(
         prognosis_id='prognosis_id',
-
         pancaim_id='pancaim_id',
+
+        prognosis_date='prognosis_date',
+        prognosis_date_raw_value='prognosis_date_raw_value',
 
         time_at_risk_to_death_variable='time_at_risk_to_death_variable',
         time_at_risk_variable_in_months='time_at_risk_variable_in_months',
@@ -152,7 +160,6 @@ _surgery = Table(
     name='surgery',
     fields=SimpleNamespace(
         surgery_id='surgery_id',
-
         pancaim_id='pancaim_id',
 
         date_of_surgery='date_of_surgery',                                          # Probable
@@ -198,6 +205,9 @@ _tumor = Table(
         tumor_id='tumor_id',
 
         pancaim_id='pancaim_id',
+
+        tumor_date='tumor_date',
+        tumor_date_raw_value='tumor_date_raw_value',
 
         clinical_tnm='clinical_tnm',
         combined_tnm='combined_tnm',                                    # Probable
@@ -277,6 +287,9 @@ class BodyMeasurement(Base):
     pancaim_id = Column(ForeignKey(f'{CDM_SCHEMA}.{_person.name}.{_person.fields.pancaim_id}', ondelete="CASCADE"),
                         nullable=False, name=_body_measurement.fields.pancaim_id)
 
+    body_measurement_date = Column(Date, name=_body_measurement.fields.body_measurement_date, nullable=False)
+    body_measurement_date_raw_value = Column(Date, name=_body_measurement.fields.body_measurement_date_raw_value, nullable=False)
+
     height = Column(Integer, name=_body_measurement.fields.height)
     weight = Column(Numeric, name=_body_measurement.fields.weight)
 
@@ -292,6 +305,9 @@ class Lab(Base):
 
     pancaim_id = Column(ForeignKey(f'{CDM_SCHEMA}.{_person.name}.{_person.fields.pancaim_id}', ondelete="CASCADE"),
                         nullable=False, name=_lab.fields.pancaim_id)
+
+    lab_date = Column(Date, name=_lab.fields.lab_date, nullable=False)
+    lab_date_raw_value = Column(Date, name=_lab.fields.lab_date_raw_value, nullable=False)
 
     albumin = Column(Numeric, name=_lab.fields.albumin)
     alt = Column(Numeric, name=_lab.fields.alt)
@@ -339,6 +355,9 @@ class Lab2(Base):
     pancaim_id = Column(ForeignKey(f'{CDM_SCHEMA}.{_person.name}.{_person.fields.pancaim_id}', ondelete="CASCADE"),
                         nullable=False, name=_lab2.fields.pancaim_id)
 
+    lab2_date = Column(Date, name=_lab2.fields.lab2_date, nullable=False)
+    lab2_date_raw_value = Column(Date, name=_lab2.fields.lab2_date_raw_value, nullable=False)
+
     ca_19_9 = Column(Numeric, name=_lab2.fields.ca_19_9)
     cea = Column(Numeric, name=_lab2.fields.cea)
 
@@ -354,6 +373,9 @@ class Prognosis(Base):
 
     pancaim_id = Column(ForeignKey(f'{CDM_SCHEMA}.{_person.name}.{_person.fields.pancaim_id}', ondelete="CASCADE"),
                         nullable=False, name=_prognosis.fields.pancaim_id)
+
+    prognosis_date = Column(Date, name=_prognosis.fields.prognosis_date, nullable=False)
+    prognosis_date_raw_value = Column(Date, name=_prognosis.fields.prognosis_date_raw_value, nullable=False)
 
     time_at_risk_to_death_variable = Column(Numeric, name=_prognosis.fields.time_at_risk_to_death_variable)
     time_at_risk_variable_in_months = Column(Numeric, name=_prognosis.fields.time_at_risk_variable_in_months)
@@ -371,12 +393,12 @@ class Surgery(Base):
     pancaim_id = Column(ForeignKey(f'{CDM_SCHEMA}.{_person.name}.{_person.fields.pancaim_id}', ondelete="CASCADE"),
                         nullable=False, name=_surgery.fields.pancaim_id)
 
-    date_of_surgery = Column(Date, name=_surgery.fields.date_of_surgery)                                # Probable
+    date_of_surgery = Column(Date, name=_surgery.fields.date_of_surgery, nullable=False)                                # Probable
     surgery_purpose = Column(Text, name=_surgery.fields.surgery_purpose)
     surgical_technique = Column(Text, name=_surgery.fields.surgical_technique)
     year_of_surgery = Column(Integer, name=_surgery.fields.year_of_surgery)                             # Model specifies Date type, but "year" as Integer makes more sense.
 
-    date_of_surgery_raw_value = Column(Text, name=_surgery.fields.date_of_surgery_raw_value)            # Probable
+    date_of_surgery_raw_value = Column(Text, name=_surgery.fields.date_of_surgery_raw_value, nullable=False)            # Probable
     surgery_purpose_raw_value = Column(Text, name=_surgery.fields.surgery_purpose_raw_value)
     surgical_technique_raw_value = Column(Text, name=_surgery.fields.surgical_technique_raw_value)
     year_of_surgery_raw_value = Column(Text, name=_surgery.fields.year_of_surgery_raw_value)
@@ -416,6 +438,9 @@ class Tumor(Base):
 
     pancaim_id = Column(ForeignKey(f'{CDM_SCHEMA}.{_person.name}.{_person.fields.pancaim_id}', ondelete="CASCADE"),
                         nullable=False, name=_tumor.fields.pancaim_id)
+
+    tumor_date = Column(Date, name=_tumor.fields.tumor_date, nullable=False)
+    tumor_date_raw_value = Column(Date, name=_tumor.fields.tumor_date_raw_value, nullable=False)
 
     clinical_tnm = Column(Text, name=_tumor.fields.clinical_tnm)
     combined_tnm = Column(Text, name=_tumor.fields.combined_tnm)                                # Probable
