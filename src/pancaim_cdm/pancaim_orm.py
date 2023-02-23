@@ -288,7 +288,7 @@ class BodyMeasurement(Base):
                         nullable=False, name=_body_measurement.fields.pancaim_id)
 
     body_measurement_date = Column(Date, name=_body_measurement.fields.body_measurement_date, nullable=False)
-    body_measurement_date_raw_value = Column(Date, name=_body_measurement.fields.body_measurement_date_raw_value, nullable=False)
+    body_measurement_date_raw_value = Column(Text, name=_body_measurement.fields.body_measurement_date_raw_value, nullable=False)
 
     height = Column(Integer, name=_body_measurement.fields.height)
     weight = Column(Numeric, name=_body_measurement.fields.weight)
@@ -307,7 +307,7 @@ class Lab(Base):
                         nullable=False, name=_lab.fields.pancaim_id)
 
     lab_date = Column(Date, name=_lab.fields.lab_date, nullable=False)
-    lab_date_raw_value = Column(Date, name=_lab.fields.lab_date_raw_value, nullable=False)
+    lab_date_raw_value = Column(Text, name=_lab.fields.lab_date_raw_value, nullable=False)
 
     albumin = Column(Numeric, name=_lab.fields.albumin)
     alt = Column(Numeric, name=_lab.fields.alt)
@@ -356,7 +356,7 @@ class Lab2(Base):
                         nullable=False, name=_lab2.fields.pancaim_id)
 
     lab2_date = Column(Date, name=_lab2.fields.lab2_date, nullable=False)
-    lab2_date_raw_value = Column(Date, name=_lab2.fields.lab2_date_raw_value, nullable=False)
+    lab2_date_raw_value = Column(Text, name=_lab2.fields.lab2_date_raw_value, nullable=False)
 
     ca_19_9 = Column(Numeric, name=_lab2.fields.ca_19_9)
     cea = Column(Numeric, name=_lab2.fields.cea)
@@ -375,7 +375,7 @@ class Prognosis(Base):
                         nullable=False, name=_prognosis.fields.pancaim_id)
 
     prognosis_date = Column(Date, name=_prognosis.fields.prognosis_date, nullable=False)
-    prognosis_date_raw_value = Column(Date, name=_prognosis.fields.prognosis_date_raw_value, nullable=False)
+    prognosis_date_raw_value = Column(Text, name=_prognosis.fields.prognosis_date_raw_value, nullable=False)
 
     time_at_risk_to_death_variable = Column(Numeric, name=_prognosis.fields.time_at_risk_to_death_variable)
     time_at_risk_variable_in_months = Column(Numeric, name=_prognosis.fields.time_at_risk_variable_in_months)
@@ -440,7 +440,7 @@ class Tumor(Base):
                         nullable=False, name=_tumor.fields.pancaim_id)
 
     tumor_date = Column(Date, name=_tumor.fields.tumor_date, nullable=False)
-    tumor_date_raw_value = Column(Date, name=_tumor.fields.tumor_date_raw_value, nullable=False)
+    tumor_date_raw_value = Column(Text, name=_tumor.fields.tumor_date_raw_value, nullable=False)
 
     clinical_tnm = Column(Text, name=_tumor.fields.clinical_tnm)
     combined_tnm = Column(Text, name=_tumor.fields.combined_tnm)                                # Probable
