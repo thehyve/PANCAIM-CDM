@@ -61,6 +61,8 @@ _person = Table(
 _body_measurement = Table(
     name='body_measurement',
     fields=SimpleNamespace(
+        body_measurement_id='body_measurement_id',
+
         pancaim_id='pancaim_id',
 
         height='height',
@@ -74,6 +76,8 @@ _body_measurement = Table(
 _lab = Table(
     name='lab',
     fields=SimpleNamespace(
+        lab_id='lab_id',
+
         pancaim_id='pancaim_id',
 
         albumin='albumin',
@@ -117,6 +121,8 @@ _lab = Table(
 _lab2 = Table(
     name='lab2',
     fields=SimpleNamespace(
+        lab2_id='lab2_id',
+
         pancaim_id='pancaim_id',
 
         ca_19_9='ca_19_0',
@@ -130,6 +136,8 @@ _lab2 = Table(
 _prognosis = Table(
     name='prognosis',
     fields=SimpleNamespace(
+        prognosis_id='prognosis_id',
+
         pancaim_id='pancaim_id',
 
         time_at_risk_to_death_variable='time_at_risk_to_death_variable',
@@ -143,6 +151,8 @@ _prognosis = Table(
 _surgery = Table(
     name='surgery',
     fields=SimpleNamespace(
+        surgery_id='surgery_id',
+
         pancaim_id='pancaim_id',
 
         date_of_surgery='date_of_surgery',                                          # Probable
@@ -160,6 +170,8 @@ _surgery = Table(
 _therapy = Table(
     name='therapy',
     fields=SimpleNamespace(
+        therapy_id='therapy_id',
+
         pancaim_id='pancaim_id',
 
         adjuvant_chemotherapy='adjuvant_chemotherapy',
@@ -183,6 +195,8 @@ _therapy = Table(
 _tumor = Table(
     name='tumor',
     fields=SimpleNamespace(
+        tumor_id='tumor_id',
+
         pancaim_id='pancaim_id',
 
         clinical_tnm='clinical_tnm',
@@ -258,6 +272,8 @@ class BodyMeasurement(Base):
     __tablename__ = _body_measurement.name
     __table_args__ = {'schema': CDM_SCHEMA}
 
+    body_measurement_id = Column(Integer, primary_key=True, name=_body_measurement.fields.body_measurement_id)
+
     pancaim_id = Column(ForeignKey(f'{CDM_SCHEMA}.{_person.name}.{_person.fields.pancaim_id}', ondelete="CASCADE"),
                         nullable=False, name=_body_measurement.fields.pancaim_id)
 
@@ -271,6 +287,8 @@ class BodyMeasurement(Base):
 class Lab(Base):
     __tablename__ = _lab.name
     __table_args__ = {'schema': CDM_SCHEMA}
+
+    lab_id = Column(Integer, primary_key=True, name=_lab.fields.lab_id)
 
     pancaim_id = Column(ForeignKey(f'{CDM_SCHEMA}.{_person.name}.{_person.fields.pancaim_id}', ondelete="CASCADE"),
                         nullable=False, name=_lab.fields.pancaim_id)
@@ -316,33 +334,39 @@ class Lab2(Base):
     __tablename__ = _lab2.name
     __table_args__ = {'schema': CDM_SCHEMA}
 
+    lab2_id = Column(Integer, primary_key=True, name=_lab2.fields.lab2_id)
+
     pancaim_id = Column(ForeignKey(f'{CDM_SCHEMA}.{_person.name}.{_person.fields.pancaim_id}', ondelete="CASCADE"),
                         nullable=False, name=_lab2.fields.pancaim_id)
 
-    ca_19_9 = Column(Numeric, name=_lab.fields.ca_19_9)
-    cea = Column(Numeric, name=_lab.fields.cea)
+    ca_19_9 = Column(Numeric, name=_lab2.fields.ca_19_9)
+    cea = Column(Numeric, name=_lab2.fields.cea)
 
-    ca_19_9_raw_value = Column(Text, name=_lab.fields.ca_19_9_raw_value)
-    cea_raw_value = Column(Text, name=_lab.fields.cea_raw_value)
+    ca_19_9_raw_value = Column(Text, name=_lab2.fields.ca_19_9_raw_value)
+    cea_raw_value = Column(Text, name=_lab2.fields.cea_raw_value)
 
 
 class Prognosis(Base):
     __tablename__ = _prognosis.name
     __table_args__ = {'schema': CDM_SCHEMA}
 
+    prognosis_id = Column(Integer, primary_key=True, name=_prognosis.fields.prognosis_id)
+
     pancaim_id = Column(ForeignKey(f'{CDM_SCHEMA}.{_person.name}.{_person.fields.pancaim_id}', ondelete="CASCADE"),
                         nullable=False, name=_prognosis.fields.pancaim_id)
 
-    time_at_risk_to_death_variable = Column(Numeric, name=_lab.fields.time_at_risk_to_death_variable)
-    time_at_risk_variable_in_months = Column(Numeric, name=_lab.fields.time_at_risk_variable_in_months)
+    time_at_risk_to_death_variable = Column(Numeric, name=_prognosis.fields.time_at_risk_to_death_variable)
+    time_at_risk_variable_in_months = Column(Numeric, name=_prognosis.fields.time_at_risk_variable_in_months)
 
-    time_at_risk_to_death_variable_raw_value = Column(Text, name=_lab.fields.time_at_risk_to_death_variable_raw_value)
-    time_at_risk_variable_in_months_raw_value = Column(Text, name=_lab.fields.time_at_risk_variable_in_months_raw_value)
+    time_at_risk_to_death_variable_raw_value = Column(Text, name=_prognosis.fields.time_at_risk_to_death_variable_raw_value)
+    time_at_risk_variable_in_months_raw_value = Column(Text, name=_prognosis.fields.time_at_risk_variable_in_months_raw_value)
 
 
 class Surgery(Base):
     __tablename__ = _surgery.name
     __table_args__ = {'schema': CDM_SCHEMA}
+
+    surgery_id = Column(Integer, primary_key=True, name=_surgery.fields.surgery_id)
 
     pancaim_id = Column(ForeignKey(f'{CDM_SCHEMA}.{_person.name}.{_person.fields.pancaim_id}', ondelete="CASCADE"),
                         nullable=False, name=_surgery.fields.pancaim_id)
@@ -361,6 +385,8 @@ class Surgery(Base):
 class Therapy(Base):
     __tablename__ = _therapy.name
     __table_args__ = {'schema': CDM_SCHEMA}
+
+    therapy_id = Column(Integer, primary_key=True, name=_therapy.fields.therapy_id)
 
     pancaim_id = Column(ForeignKey(f'{CDM_SCHEMA}.{_person.name}.{_person.fields.pancaim_id}', ondelete="CASCADE"),
                         nullable=False, name=_therapy.fields.pancaim_id)
@@ -385,6 +411,8 @@ class Therapy(Base):
 class Tumor(Base):
     __tablename__ = _tumor.name
     __table_args__ = {'schema': CDM_SCHEMA}
+
+    tumor_id = Column(Integer, primary_key=True, name=_tumor.fields.tumor_id)
 
     pancaim_id = Column(ForeignKey(f'{CDM_SCHEMA}.{_person.name}.{_person.fields.pancaim_id}', ondelete="CASCADE"),
                         nullable=False, name=_tumor.fields.pancaim_id)
