@@ -3,6 +3,7 @@ import json
 
 class CustomJSONEncoder(json.JSONEncoder):
     """Custom "JSON" encoder writes the requested format.
+    To use this encoder, use json.dump(data_dict, cls=CustomJSONEncoder)
     Based on: based on https://gist.github.com/jannismain/e96666ca4f059c3e5bc28abb711b5c92"""
 
     def __init__(self, *args, **kwargs):
