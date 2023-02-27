@@ -26,7 +26,7 @@ class CustomJSONEncoder(json.JSONEncoder):
                 output.append(self._encode_empty_dict(k))
             else:                                                               # to encode non-empty dictionaries
                 output.append(
-                    # f"{self.indent_str}{json.dumps(k)}\n{self.encode(v)}"     # to keeps basic json format of using double quotes, uncomment this and comment line below
+                    # f"{self.indent_str}{json.dumps(k)}\n{self.encode(v)}"     # to keep basic json format of using double quotes, uncomment this and comment line below
                     f"{self.indent_str}{k}\n{self.encode(v)}"
                 )
         self.indentation_level -= 1
@@ -34,12 +34,12 @@ class CustomJSONEncoder(json.JSONEncoder):
 
     def _encode_empty_dict(self, k) -> str:
         """This encodes empty dictionaries (like empty tables)"""
-        # return f"{self.indent_str}{json.dumps(k)}"                            # to keeps basic json format of using double quotes, uncomment this and comment line below
+        # return f"{self.indent_str}{json.dumps(k)}"                            # to keep basic json format of using double quotes, uncomment this and comment line below
         return f"{self.indent_str}{k}"
 
     def _encode_item(self, k, v) -> str:
         """This encodes key-value pairs in one line (like table fields), including 'None'"""
-        # return f"{self.indent_str}{json.dumps(k)} = {self.encode(v)}"         # to keeps basic json format of using double quotes, uncomment this and comment line below
+        # return f"{self.indent_str}{json.dumps(k)} = {self.encode(v)}"         # to keep basic json format of using double quotes, uncomment this and comment line below
         return f"{self.indent_str}{k} = {v}"
 
     def iterencode(self, o, **kwargs) -> str:
