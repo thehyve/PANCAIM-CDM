@@ -3,6 +3,7 @@ from types import SimpleNamespace
 
 from sqlalchemy import Column, Integer, Text, Numeric, Date, Boolean, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
@@ -347,6 +348,8 @@ class Lab(Base):
     triglycerides_raw_value = Column(Text, name=_lab.fields.triglycerides_raw_value)             # Probable
     tromboplastin_raw_value = Column(Text, name=_lab.fields.tromboplastin_raw_value)             # Probable
 
+    person = relationship('Person')
+
 
 class Lab2(Base):
     __tablename__ = _lab2.name
@@ -365,6 +368,8 @@ class Lab2(Base):
 
     ca_19_9_raw_value = Column(Text, name=_lab2.fields.ca_19_9_raw_value)
     cea_raw_value = Column(Text, name=_lab2.fields.cea_raw_value)
+
+    person = relationship('Person')
 
 
 class Prognosis(Base):
@@ -385,6 +390,8 @@ class Prognosis(Base):
     time_at_risk_to_death_variable_raw_value = Column(Text, name=_prognosis.fields.time_at_risk_to_death_variable_raw_value)
     time_at_risk_variable_in_months_raw_value = Column(Text, name=_prognosis.fields.time_at_risk_variable_in_months_raw_value)
 
+    person = relationship('Person')
+
 
 class Surgery(Base):
     __tablename__ = _surgery.name
@@ -404,6 +411,8 @@ class Surgery(Base):
     surgery_purpose_raw_value = Column(Text, name=_surgery.fields.surgery_purpose_raw_value)
     surgical_technique_raw_value = Column(Text, name=_surgery.fields.surgical_technique_raw_value)
     year_of_surgery_raw_value = Column(Text, name=_surgery.fields.year_of_surgery_raw_value)
+
+    person = relationship('Person')
 
 
 class Therapy(Base):
@@ -430,6 +439,8 @@ class Therapy(Base):
     neoadjuvant_radiotherapy_raw_value = Column(Text, name=_therapy.fields.neoadjuvant_radiotherapy_raw_value)
     purpose_of_neoadjuvant_chemotherapy_raw_value = Column(Text, name=_therapy.fields.purpose_of_neoadjuvant_chemotherapy_raw_value)
     purpose_of_neoadjuvant_radiotherapy_raw_value = Column(Text, name=_therapy.fields.purpose_of_neoadjuvant_radiotherapy_raw_value)
+
+    person = relationship('Person')
 
 
 class Tumor(Base):
@@ -471,3 +482,5 @@ class Tumor(Base):
     resectability_tnm_raw_value = Column(Text, name=_tumor.fields.resectability_tnm_raw_value)                      # Probable
     tumor_location_raw_value = Column(Text, name=_tumor.fields.tumor_location_raw_value)
     tumor_size_raw_value = Column(Text, name=_tumor.fields.tumor_size_raw_value)
+
+    person = relationship('Person')
