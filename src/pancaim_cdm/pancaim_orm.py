@@ -97,7 +97,7 @@ _lab = Table(
         hb='hb',
         hematocrit='hematocrit',
         leukocytes='leukocytes',
-        plateletes='plateletes',
+        platelets='platelets',
         protrombin='protrombin',
         triglycerides='triglycerides',                          # Probable
         tromboplastin='tromboplastin',                          # Probable
@@ -115,7 +115,7 @@ _lab = Table(
         hb_raw_value='hb_raw_value',
         hematocrit_raw_value='hematocrit_raw_value',
         leukocytes_raw_value='leukocytes_raw_value',
-        plateletes_raw_value='plateletes_raw_value',
+        platelets_raw_value='platelets_raw_value',
         protrombin_raw_value='protrombin_raw_value',
         triglycerides_raw_value='triglycerides_raw_value',      # Probable
         tromboplastin_raw_value='tromboplastin_raw_value',      # Probable
@@ -296,6 +296,8 @@ class BodyMeasurement(Base):
     height_raw_value = Column(Text, name=_body_measurement.fields.height_raw_value)
     weight_raw_value = Column(Text, name=_body_measurement.fields.weight_raw_value)
 
+    person = relationship('Person')
+
 
 class Lab(Base):
     __tablename__ = _lab.name
@@ -322,7 +324,7 @@ class Lab(Base):
     hb = Column(Numeric, name=_lab.fields.hb)
     hematocrit = Column(Numeric, name=_lab.fields.hematocrit)
     leukocytes = Column(Numeric, name=_lab.fields.leukocytes)
-    plateletes = Column(Numeric, name=_lab.fields.plateletes)
+    platelets = Column(Numeric, name=_lab.fields.platelets)
     protrombin = Column(Numeric, name=_lab.fields.protrombin)
     triglycerides = Column(Numeric, name=_lab.fields.triglycerides)             # Probable
     tromboplastin = Column(Numeric, name=_lab.fields.tromboplastin)             # Probable
@@ -340,7 +342,7 @@ class Lab(Base):
     hb_raw_value = Column(Text, name=_lab.fields.hb_raw_value)
     hematocrit_raw_value = Column(Text, name=_lab.fields.hematocrit_raw_value)
     leukocytes_raw_value = Column(Text, name=_lab.fields.leukocytes_raw_value)
-    plateletes_raw_value = Column(Text, name=_lab.fields.plateletes_raw_value)
+    platelets_raw_value = Column(Text, name=_lab.fields.platelets_raw_value)
     protrombin_raw_value = Column(Text, name=_lab.fields.protrombin_raw_value)
     triglycerides_raw_value = Column(Text, name=_lab.fields.triglycerides_raw_value)             # Probable
     tromboplastin_raw_value = Column(Text, name=_lab.fields.tromboplastin_raw_value)             # Probable
@@ -445,9 +447,9 @@ class Tumor(Base):
     clinical_tnm = Column(Text, name=_tumor.fields.clinical_tnm)
     combined_tnm = Column(Text, name=_tumor.fields.combined_tnm)                                # Probable
     histology_description = Column(Text, name=_tumor.fields.histology_description)
-    histology_present = Column(Text, name=_tumor.fields.histology_present)
+    histology_present = Column(Boolean, name=_tumor.fields.histology_present)
     invasion_of_other_organs = Column(Boolean, name=_tumor.fields.invasion_of_other_organs)
-    pathological_tnm = Column(Boolean, name=_tumor.fields.pathological_tnm)
+    pathological_tnm = Column(Text, name=_tumor.fields.pathological_tnm)
     pm = Column(Text, name=_tumor.fields.pm)                                                    # Var type currently undecided, probably Text
     pn = Column(Text, name=_tumor.fields.pn)                                                    # Var type currently undecided, probably Text
     pt = Column(Text, name=_tumor.fields.pt)                                                    # Var type currently undecided, probably Text
