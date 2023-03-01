@@ -1,0 +1,2 @@
+from pancaim_cdm.semantic_mapping.controlled_terms.surgery.surgery_purpose import SurgeryPurpose
+from pancaim_cdm.semantic_mapping.controlled_terms.surgery.surgical_technique import SurgicalTechnique
