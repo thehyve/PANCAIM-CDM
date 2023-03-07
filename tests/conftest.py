@@ -2,13 +2,10 @@ import os
 import glob
 import pytest
 from typing import List, Dict
-from pydantic import FilePath
 
 from sqlalchemy import create_engine
-from sqlalchemy.engine import Engine
 from sqlalchemy.engine import Connection
 from sqlalchemy.orm import Session
-from sqlalchemy_utils import create_database, drop_database
 from sqlalchemy.pool import NullPool
 from sqlalchemy.orm import sessionmaker
 
@@ -82,8 +79,20 @@ def create_record(table_name: str, record):
 
     if table_name == 'Person':
         return cdm.Person(**d)
+    elif table_name == 'BodyMeasurement':
+        return cdm.BodyMeasurement(**d)
+    elif table_name == 'Lab':
+        return cdm.Lab(**d)
+    elif table_name == 'Lab2':
+        return cdm.Lab2(**d)
+    elif table_name == 'Prognosis':
+        return cdm.Prognosis(**d)
     elif table_name == 'Surgery':
         return cdm.Surgery(**d)
+    elif table_name == 'Therapy':
+        return cdm.Therapy(**d)
+    elif table_name == 'Tumor':
+        return cdm.Tumor(**d)
 
 
 @pytest.fixture()
