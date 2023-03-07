@@ -69,38 +69,24 @@ def load_synth_data_to_cdm(synth_data_files: Dict[str, str]) -> List:
     return records
 
 
-def create_person_record(record: Dict) -> cdm.Person:
-    """Converts a dictionary into a cdm object"""
-    d = {}
-    cur_table = getattr(cdm, 'Person')
-    for field, value in record.items():
-        cur_table_field = getattr(cur_table, field)
-        cur_table_field_key = getattr(cur_table_field, 'key')
-
-        d[cur_table_field_key] = value
-
-    return cdm.Person(**d)
-
-
-def create_surgery_record(record: Dict) -> cdm.Surgery:
-    """Converts a dictionary into a cdm object"""
-    d = {}
-    cur_table = getattr(cdm, 'Surgery')
-    for field, value in record.items():
-        cur_table_field = getattr(cur_table, field)
-        cur_table_field_key = getattr(cur_table_field, 'key')
-
-        d[cur_table_field_key] = value
-
-    return cdm.Surgery(**d)
-
-
 def create_record(table_name: str, record):
-    """Redirects the creation of records to functions specific to each cdm object type"""
+    """Converts a dicionary into a cdm object"""
     if table_name == 'Person':
-        return create_person_record(record)
+        cur_table = getattr(cdm, 'Person')
     elif table_name == 'Surgery':
-        return create_surgery_record(record)
+        cur_table = getattr(cdm, 'Surgery')
+
+    d = {}
+    for field, value in record.items():
+        cur_table_field = getattr(cur_table, field)
+        cur_table_field_key = getattr(cur_table_field, 'key')
+
+        d[cur_table_field_key] = value
+
+    if table_name == 'Person':
+        return cdm.Person(**d)
+    elif table_name == 'Surgery':
+        return cdm.Surgery(**d)
 
 
 @pytest.fixture()
