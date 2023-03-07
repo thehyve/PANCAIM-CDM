@@ -1,0 +1,4 @@
+pancaim_id,sex,ecog_scale,surgery
+123,male,111,TRUE
+456,female,222,FALSE
+789,male,333,TRUE
