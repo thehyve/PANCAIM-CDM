@@ -71,10 +71,7 @@ def load_synth_data_to_cdm(synth_data_files: Dict[str, str]) -> List:
 
 def create_record(table_name: str, record):
     """Converts a dicionary into a cdm object"""
-    if table_name == 'Person':
-        cur_table = getattr(cdm, 'Person')
-    elif table_name == 'Surgery':
-        cur_table = getattr(cdm, 'Surgery')
+    cur_table = getattr(cdm, table_name)
 
     d = {}
     for field, value in record.items():
