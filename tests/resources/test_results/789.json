@@ -1,0 +1,37 @@
+{
+    "person": [
+        {
+            "pancaim_id": 789,
+            "age_at_diagnosis": null,
+            "date_of_birth": null,
+            "date_of_death": null,
+            "date_of_diagnosis": null,
+            "date_of_first_contact": null,
+            "date_of_interview": null,
+            "date_of_last_contact": null,
+            "ecog_scale": 333,
+            "ethnicity": null,
+            "other_associated_illnesses": null,
+            "resectional_surgery": null,
+            "sex": "male",
+            "surgery": true,
+            "vital_status": null
+        }
+    ],
+    "body_measurement": [],
+    "surgery": [
+        {
+            "surgery_id": 8,
+            "pancaim_id": 789,
+            "date_of_surgery": "2000-01-01",
+            "surgery_purpose": "Radical",
+            "surgical_technique": "Whipple",
+            "year_of_surgery": 2000
+        }
+    ],
+    "lab": [],
+    "lab2": [],
+    "prognosis": [],
+    "therapy": [],
+    "tumor": []
+}

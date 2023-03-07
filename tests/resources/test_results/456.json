@@ -1,0 +1,53 @@
+{
+    "person": [
+        {
+            "pancaim_id": 456,
+            "age_at_diagnosis": null,
+            "date_of_birth": null,
+            "date_of_death": null,
+            "date_of_diagnosis": null,
+            "date_of_first_contact": null,
+            "date_of_interview": null,
+            "date_of_last_contact": null,
+            "ecog_scale": 222,
+            "ethnicity": null,
+            "other_associated_illnesses": null,
+            "resectional_surgery": null,
+            "sex": "female",
+            "surgery": false,
+            "vital_status": null
+        }
+    ],
+    "body_measurement": [],
+    "surgery": [
+        {
+            "surgery_id": 7,
+            "pancaim_id": 456,
+            "date_of_surgery": "2004-01-01",
+            "surgery_purpose": "Other",
+            "surgical_technique": "Whipple",
+            "year_of_surgery": 2004
+        },
+        {
+            "surgery_id": 6,
+            "pancaim_id": 456,
+            "date_of_surgery": "2002-01-01",
+            "surgery_purpose": "Palliative",
+            "surgical_technique": "Whipple",
+            "year_of_surgery": 2002
+        },
+        {
+            "surgery_id": 5,
+            "pancaim_id": 456,
+            "date_of_surgery": "2000-01-01",
+            "surgery_purpose": "Radical",
+            "surgical_technique": "Whipple",
+            "year_of_surgery": 2000
+        }
+    ],
+    "lab": [],
+    "lab2": [],
+    "prognosis": [],
+    "therapy": [],
+    "tumor": []
+}
